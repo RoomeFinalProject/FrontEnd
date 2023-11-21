@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+/* 모바일 화면 스타일 조정 */
+@media only screen and (max-width: 600px) {
+  .App {
+    text-align: left; /* 텍스트 왼쪽 정렬로 변경 */
+  }
+
+  .App-logo {
+    height: 20vmin; /* 로고 크기를 더 작게 조정 */
+  }
+
+  .App-header {
+    font-size: calc(10px + 1vmin); /* 텍스트 크기를 줄임 */
+  }
+}
+
+/* PWA 아이콘 관련 스타일 */
+/* 아이콘 이미지에 마스크 적용 */
+.App-logo-maskable {
+  mask-image: url('../public/png512.png');
+  -webkit-mask-image: url('../public/png512.png');
+}
