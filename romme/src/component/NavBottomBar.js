@@ -11,7 +11,7 @@ function NavBottomBar() {
       <Link to="/research" className="nav-icon">
         <FaBook />
       </Link>
-      <Link to="/openchat" className="nav-icon">
+      <Link to="/help" className="nav-icon" onClick={() => window.location.href = 'http://pf.kakao.com/_xbxjgxjG/chat'}>
         <FaComments />
       </Link>
     </div>

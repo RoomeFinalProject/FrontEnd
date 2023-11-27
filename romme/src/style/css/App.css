@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 100%;
+  width : 100vw;
   max-width: 768px;
   margin: 0 auto; /* Center the container */
   /* Add other styles as needed */
@@ -15,49 +15,51 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+  background-image: url('../../image/background1.jpg');
+  background-size: cover;
+  width : 100vw;
+  height: 100vh;
 }
 
 .textBox{
-  width: 80vw;
+  width: 100vw;
   height: 40vh;
-  border: 5px solid black;
   display: flex;
   justify-content: center;
-  background-image: url('../../image/sky.jpg'); /* Adjust the path based on your project structure */
+  align-items: center;
+ /* Adjust the path based on your project structure */
   background-size: cover; /* Optional: adjust the background size as needed */
   background-position: center; /* Optional: adjust the background position as needed */
-  color: whitesmoke;
+  color: black;
 }
 .CardContainer{
-
+  background-color: none;
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
 
 }
 
 
 .card{
   width: 40vw;
-  height: 30vh;
-  border: 5px solid black;
+  height: 20vh;
   display: flex;
   margin: 10px;
+  border: solid black 0px;
+  justify-content: center;
+  text-align: center;
+  background-color: none;
 }
 
 
 .summaryContainer{
   display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  margin: 10px
+  flex-direction: row;
 }
 
-.box-youtuber{
+.box-researcher{
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
   margin: 20px;
   width: 100px;
   height: 100px;
@@ -66,7 +68,6 @@
 .box-context{
   display: flex;
   flex-direction: row;
-  border: 1px solid black;
   margin: 20px;
   width: 80vw;
   height: 100px;
@@ -76,6 +77,30 @@
   text-decoration: none;
 }
 
+
+.input-section{
+  margin:10px;
+}
+
+.selectYoutuber{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  margin-bottom: 10px;
+  margin: 10px;
+}
+
+.buttons{
+  display: flex;
+  flex-direction: column;
+}
+
+.result-section{
+  width: 90vw;
+  height: auto;
+  background-color: white;
+}
 
 
 
@@ -87,17 +112,48 @@
     flex-wrap: wrap;
     margin: 0 auto;
     width: 100%;
-    max-width: 2000px;
+    max-width: 3000px;
       /* Adjust styles for screens 768px and above */
+    font-size: 20px;
+
   }
   .nav-bottom-bar {
     display: none; 
   }
+  .textBox{
+    font-size: 50px;
+  }
+  .me-auto{
+    font-size: 20px;
+  }
+  .selectYoutuberBox{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
 
+
+
+
+
+
+
+
 @media (max-width: 768px) {
+  .WebContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 768px;
+      /* Adjust styles for screens 768px and above */
+    font-size: 20px;
+  }
   .me-auto {
     display: none;
+    font-size: 30px;
   }
   .nav-bottom-bar {
     display: flex;
@@ -117,13 +173,59 @@
     color: #333;
     text-decoration: none;
   }
+  .box-researcher {
+    width: 50px; /* Adjust the width as needed for smaller screens */
+    height: 50px; /* Adjust the height as needed for smaller screens */
+  }
+
+  .box-context {
+    width: 65vw; /* Take full width on smaller screens */
+    height: auto;
+    
+  }
+  .summaryContainer{
+    font-size: 17px;
+  }
+
+  .search-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .input-section {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure it takes the full width */
+  }
+  
+
+
+  .subscribers{
+    font-size: 14px;
+  }
+
   
 }
+
+
+@font-face {
+  font-family: 'KakaoBold';
+  src: url('../font/KakaoBold.ttf') format('woff2'),
+       url('../font/KakaoRegular.ttf') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'KakaoBold', sans-serif;
+}
+
+
 
 .TestBox{
   width: 500px;
   height: 800px;
-  border: 5px solid black;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -169,6 +271,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.today{
+  font-size: 25px;
+  margin-left: 10px;
 }
 
 /* 모바일 화면 스타일 조정 */
