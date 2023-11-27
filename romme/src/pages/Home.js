@@ -1,5 +1,6 @@
 /* eslint-disable */
 import React, { useState } from 'react'; // useState를 가져오기
+import { Link } from 'react-router-dom';
 
 
 function Home(){
@@ -10,28 +11,28 @@ function Home(){
             홈화면 {post}
             <div className='textBox'>
                 <div>
-                금융으로 전문학습된 AI가 
-                여러분들의 투자를 도와드립니다
-                AI가관리하고
-                AI가도와주는
-                금융 전문오픈채팅방 룸메
+                금융으로 전문학습된 AI가 <br></br>
+                여러분들의 투자를 도와드립니다 <br></br>
+                AI가관리하고<br></br>
+                AI가도와주는<br></br>
+                금융 전문오픈채팅방 룸메<br></br>
                 </div>
             </div>
             <div className='CardContainer'>
-                <div className='card'>
+                <Link to='/youtube' className='card no-underline'>
                     유튜브요약
-                </div>
-                <div className='card'>
+                </Link>
+                <Link to='/research' className='card no-underline'>
                     리서치요약
-                </div>
+                </Link>
             </div>
-            <div className='CardContainer'>
-                <div className='card'>
+            <div className='CardContainer'>    
+                <Link to='/openchat' className='card no-underline'>
                     오픈채팅방
-                </div>
-                <div className='card'>
+                </Link>
+                <Link to='/help' className='card no-underline'>
                     도와줘룸메
-                </div>
+                </Link>
             </div>
 
             

@@ -9,9 +9,9 @@ import Profile from './pages/Profile';
 import Research from './pages/Research';
 import Youtube from './pages/Youtube';
 import OpenChat from './pages/OpenChat';
-import KakaoLogin from './pages/KakaoLogin'
 
 import NavTopBar from './component/NavTopBar';
+import NavBottomBar from './component/NavBottomBar';
 
 function App(){
   return (
@@ -19,7 +19,6 @@ function App(){
       <NavTopBar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/kakaologin" element={<KakaoLogin />} />
           <Route path="/help" element={<Help />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/research" element={<Research />} />
@@ -27,6 +26,7 @@ function App(){
           <Route path="/admin" element={<Admin />} />
           <Route path="/openchat" element={<OpenChat />} />
         </Routes>
+      <NavBottomBar />
     </div>
   );
 }

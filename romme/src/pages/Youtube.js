@@ -1,8 +1,10 @@
 /* eslint-disable */
-import React, { useState } from 'react'; // useState를 가져오기
-
+import React, { useState, useEffect } from 'react'; // useState를 가져오기
 
 function Youtube(){
+  
+
+  // API key, or Token==========================================================
 
     const numberOfComponents = 5; 
     const today = new Date();
