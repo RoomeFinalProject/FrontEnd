@@ -53,7 +53,7 @@ function Youtube(){
           <div className="input-section">
           <select>
             <option value="title1">제목</option>
-            <option value="title2">설명</option>
+            <option value="title2">링크</option>
           </select>
               <input type="text" placeholder="Enter title or link" style={{marginLeft:'10px'}} />
               <button>Search</button>
