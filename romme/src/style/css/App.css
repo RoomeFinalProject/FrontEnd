@@ -1,46 +1,40 @@
-
-
 .WebContainer {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width : 100vw;
+  width: 100vw;
   max-width: 768px;
   margin: 0 auto; /* Center the container */
   /* Add other styles as needed */
-  
 }
 
-.bodyContainer{
+.bodyContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('../../image/background1.jpg');
+  background-image: url("../../image/background1.jpg");
   background-size: cover;
-  width : 100vw;
-  height: 100vh;
+  width: 100vw;
 }
 
-.textBox{
+.textBox {
   width: 100vw;
   height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
- /* Adjust the path based on your project structure */
+  /* Adjust the path based on your project structure */
   background-size: cover; /* Optional: adjust the background size as needed */
   background-position: center; /* Optional: adjust the background position as needed */
   color: black;
 }
-.CardContainer{
+.CardContainer {
   background-color: none;
   display: flex;
   flex-direction: row;
-
 }
 
-
-.card{
+.card {
   width: 40vw;
   height: 20vh;
   display: flex;
@@ -51,13 +45,12 @@
   background-color: none;
 }
 
-
-.summaryContainer{
+.summaryContainer {
   display: flex;
   flex-direction: row;
 }
 
-.box-researcher{
+.box-researcher {
   display: flex;
   flex-direction: row;
   margin: 20px;
@@ -65,7 +58,7 @@
   height: 100px;
 }
 
-.box-context{
+.box-context {
   display: flex;
   flex-direction: row;
   margin: 20px;
@@ -77,32 +70,44 @@
   text-decoration: none;
 }
 
-
-.input-section{
-  margin:10px;
+.input-section {
+  margin: 10px;
 }
 
-.selectYoutuber{
+.selectYoutuber {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   background-color: white;
   margin-bottom: 10px;
   margin: 10px;
+  min-width: 20vw;
+  max-width: 90vw;
 }
 
-.buttons{
+.youtuberBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  min-width: 90vw;
+  max-width: 90vw;
+}
+
+.buttons {
   display: flex;
   flex-direction: column;
+  min-width: 100px;
+  max-width: 100px;
+  margin-left: 20px;
 }
 
-.result-section{
+.result-section {
   width: 90vw;
   height: auto;
   background-color: white;
 }
-
-
 
 /* Media query for screens 768px and above */
 @media (min-width: 768px) {
@@ -113,32 +118,24 @@
     margin: 0 auto;
     width: 100%;
     max-width: 3000px;
-      /* Adjust styles for screens 768px and above */
+    /* Adjust styles for screens 768px and above */
     font-size: 20px;
-
   }
   .nav-bottom-bar {
-    display: none; 
+    display: none;
   }
-  .textBox{
+  .textBox {
     font-size: 50px;
   }
-  .me-auto{
+  .me-auto {
     font-size: 20px;
   }
-  .selectYoutuberBox{
+  .selectYoutuberBox {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
   }
 }
-
-
-
-
-
-
-
 
 @media (max-width: 768px) {
   .WebContainer {
@@ -148,7 +145,7 @@
     margin: 0 auto;
     width: 100%;
     max-width: 768px;
-      /* Adjust styles for screens 768px and above */
+    /* Adjust styles for screens 768px and above */
     font-size: 20px;
   }
   .me-auto {
@@ -167,7 +164,7 @@
     padding: 10px;
     box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
   }
-  
+
   .nav-icon {
     font-size: 24px;
     color: #333;
@@ -181,9 +178,8 @@
   .box-context {
     width: 65vw; /* Take full width on smaller screens */
     height: auto;
-    
   }
-  .summaryContainer{
+  .summaryContainer {
     font-size: 17px;
   }
 
@@ -191,48 +187,40 @@
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    min-width: 80vw;
   }
-  
+
   .input-section {
     display: flex;
     align-items: center;
-    width: 100%; /* Ensure it takes the full width */
+    min-width: 80vw;
   }
-  
 
-
-  .subscribers{
+  .subscribers {
     font-size: 14px;
   }
-
-  
 }
 
-
 @font-face {
-  font-family: 'KakaoBold';
-  src: url('../font/KakaoBold.ttf') format('woff2'),
-       url('../font/KakaoRegular.ttf') format('woff');
+  font-family: "KakaoBold";
+  src: url("../font/KakaoBold.ttf") format("woff2"),
+    url("../font/KakaoRegular.ttf") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 
 body {
-  font-family: 'KakaoBold', sans-serif;
+  font-family: "KakaoBold", sans-serif;
 }
 
-
-
-.TestBox{
+.TestBox {
   width: 500px;
   height: 800px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
-
 
 .App {
   text-align: center;
@@ -273,32 +261,32 @@ body {
   }
 }
 
-.today{
+.today {
   font-size: 25px;
   margin-left: 10px;
 }
 
 /* 모바일 화면 스타일 조정 */
-  /* @media only screen and (max-width: 600px) { */
-    /* .App { */
-      /* text-align: left; */
-       /* 텍스트 왼쪽 정렬로 변경 */
-    /* } */
+/* @media only screen and (max-width: 600px) { */
+/* .App { */
+/* text-align: left; */
+/* 텍스트 왼쪽 정렬로 변경 */
+/* } */
 
-    /* .App-logo { */
-      /* height: 20vmin;  */
-      /* 로고 크기를 더 작게 조정 */
-    /* } */
+/* .App-logo { */
+/* height: 20vmin;  */
+/* 로고 크기를 더 작게 조정 */
+/* } */
 
-    /* .App-header { */
-      /* font-size: calc(10px + 1vmin);  */
-      /* 텍스트 크기를 줄임 */
-    /* } */
-  /* } */
+/* .App-header { */
+/* font-size: calc(10px + 1vmin);  */
+/* 텍스트 크기를 줄임 */
+/* } */
+/* } */
 
 /* PWA 아이콘 관련 스타일 */
 /* 아이콘 이미지에 마스크 적용 */
 .App-logo-maskable {
-  mask-image: url('../../../public/png512.png');
-  -webkit-mask-image: url('../../../public/png512.png');
+  mask-image: url("../../../public/png512.png");
+  -webkit-mask-image: url("../../../public/png512.png");
 }

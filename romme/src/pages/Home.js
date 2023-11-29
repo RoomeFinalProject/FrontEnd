@@ -5,8 +5,24 @@ import styles from "../style/css/Home.module.css";
 import "../style/css/App.css";
 import youtubeImage from "../image/youtube_image.png";
 import kakaoHelp from "../image/kakaohelp.png";
+import axios from "axios";
 
 function Home() {
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/");
+        const result = await response.json();
+        setData(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="bodyContainer">
       <div className={styles.textBox}>
@@ -41,9 +57,8 @@ function Home() {
       </div>
       <div className="CardContainer">
         <div className="card">설치하기</div>
+        <div className="card"></div>
       </div>
-
-      <div></div>
     </div>
   );
 }
