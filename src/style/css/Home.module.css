@@ -1,0 +1,87 @@
+.textBox {
+  width: 100vw;
+  height: 24vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Adjust the path based on your project structure */
+  background-size: cover; /* Optional: adjust the background size as needed */
+  background-position: center; /* Optional: adjust the background position as needed */
+  color: black;
+  font-size: 20px;
+}
+
+.cardImage {
+  max-width: 100%; /* Set a maximum width */
+  max-height: 200px; /* Set a maximum height */
+  width: 100px; /* Allow the image to adjust its width */
+  height: 70px; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the entire image is visible */
+}
+
+.cardImage2 {
+  max-width: 100%; /* Set a maximum width */
+  max-height: 200px; /* Set a maximum height */
+  width: 90px; /* Allow the image to adjust its width */
+  height: 60px; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the entire image is visible */
+}
+
+.cardTitle {
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.cardSubTitle {
+  font-size: 13px;
+  font-family: "Roboto-Light";
+  color: #949ba5;
+}
+
+.homeA1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.homeA2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+  margin-top: -20px;
+  font-family: "Roboto-Light";
+  margin-bottom: 20px;
+  letter-spacing: -1.5px;
+}
+
+.innerWhiteCard {
+  background-color: white;
+  width: 107px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .textBox {
+    font-size: 60px;
+  }
+}
+
+@font-face {
+  font-family: "Roboto-bold";
+  src: url("../font/Roboto-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Roboto-Light";
+  src: url("../font/Roboto-Light.ttf");
+}

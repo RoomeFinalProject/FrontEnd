@@ -1,0 +1,42 @@
+.researchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 100vw;
+  padding: 17px;
+}
+
+.selectDate {
+  font-size: 16px;
+  color: #757575;
+  width: 100px;
+  height: 20px;
+  margin-bottom: 20px;
+}
+
+.researchTitle {
+  font-size: 14px;
+  font-family: "Roboto-Bold";
+  width: 288px;
+  display: flex;
+  flex-direction: row;
+}
+
+.researchContext {
+  font-size: 12px;
+  font-family: "Roboto-regular";
+}
+
+.companyName {
+  width: 48px;
+  height: 48px;
+}
+
+.originalText {
+  width: 75px;
+  height: 32px;
+  background-color: #1573fe;
+  color: white;
+  font-size: 12px;
+  font-family: "Roboto-Light";
+}
