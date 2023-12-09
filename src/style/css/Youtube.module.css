@@ -49,13 +49,72 @@
   text-align: left;
   width: 100vw;
   height: auto;
+  margin: 15px;
   border-radius: 24px;
 }
 
 .selectA1 {
   font-size: 24px;
-  font-family: "Roboto-Light";
+  font-family: "KakaoBold";
   margin-left: 18px;
   margin-top: 30px;
   margin-bottom: 30px;
+  word-spacing: 3px;
+}
+
+.youtubeCard {
+  width: 100vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: "Roboto-Light";
+  font-size: 16px;
+  background-color: white;
+}
+
+.youtubeCardBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.youtubeCardBtn {
+  width: 72px;
+  height: 38px;
+  border-radius: 16px;
+  background-color: rgba(241, 0, 134, 0.1);
+  font-size: 12px;
+  font-weight: "Roboto-Light";
+  border: none;
+}
+
+.CardRow1 {
+  width: 80px;
+  height: auto;
+  padding: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+.CardRow2 {
+  width: auto;
+  max-width: 250px;
+  height: auto;
+  padding: 10px;
+}
+
+.CardRow3 {
+  width: auto;
+  max-width: 250px;
+  height: auto;
+  padding: 7px;
+  align-items: center;
+  justify-content: center;
+}
+
+.youtubeModal {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }

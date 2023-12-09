@@ -105,6 +105,10 @@
   margin-left: 20px;
 }
 
+.Row {
+  display: flex;
+  flex-direction: row;
+}
 /* Media query for screens 768px and above */
 @media (min-width: 768px) {
   .WebContainer {
