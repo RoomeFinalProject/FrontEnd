@@ -4,6 +4,7 @@ import styles from "../style/css/Youtube.module.css";
 import axios from "axios";
 import Card from "../component/YoutubeCard";
 import Modal from "react-modal";
+import { Row } from "react-bootstrap";
 
 function Youtube() {
   // 날짜정보 얻어오는 칸 ===========================================================
@@ -68,6 +69,14 @@ function Youtube() {
     setIsModalOpen(false);
   };
 
+  // 관심없음 버튼 구현 ------------------------------------------------------------
+  const handleNotInterested = (index) => {
+    const updatedVideos = [...videos];
+    updatedVideos.splice(index, 1);
+    setVideos(updatedVideos);
+  };
+  // return ------------------------------------------------------------------------------
+
   return (
     <div className={styles.youtubeBodyContainer}>
       <div className="search-section">
@@ -87,20 +96,17 @@ function Youtube() {
       </div>
       <div>
         <div className={styles.resultSection}>
-          <div className="left-section">
-            <div className="youtube-info">
-              <p>Subscribers: 100k</p>
+          <div>
+            <div className={styles.resultInfo}>
+              <div>YouTube Title</div>
+              <div className={styles.resultYoutuber}>유튜버명</div>
             </div>
           </div>
-          <div className="right-section">
-            <div>YouTube Title</div>
-            {summary && (
-              <div>
-                <h3>Summary:</h3>
-                <p>{summary}</p>
-              </div>
-            )}
-          </div>
+          {summary && (
+            <div>
+              <div style={{ whiteSpace: "pre-line" }}>{summary}</div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -108,8 +114,13 @@ function Youtube() {
       <div className={styles.selectBox}>
         <div className={styles.selectA1}> 최신 투자 정보 요약 보기</div>
         <div className={styles.youtubeCardBox}>
-          {videos.map((channelVideos, index) => (
-            <Card key={index} video={channelVideos[0]} openModal={openModal} />
+          {videos.slice(0, 5).map((channelVideos, index) => (
+            <Card
+              key={index}
+              video={channelVideos[0]}
+              openModal={openModal}
+              onNotInterested={() => handleNotInterested(index)}
+            />
           ))}
         </div>
       </div>
@@ -133,19 +144,22 @@ function Youtube() {
                 fontFamily: "Roboto-Light",
                 fontSize: "14px",
                 marginBottom: "20px",
+                whiteSpace: "pre-line",
               }}
             >
               {firstVideo.summary}
             </div>
           </div>
         )}
-        <button
-          onClick={closeModal}
-          className={styles.youtubeCardBtn}
-          style={{ alignSelf: "center" }}
-        >
-          창 닫기
-        </button>
+        <div className={styles.youtubeCardBtnCenter}>
+          <button
+            onClick={closeModal}
+            className={styles.youtubeCardBtn}
+            style={{ textAlign: "center" }}
+          >
+            창 닫기
+          </button>
+        </div>
       </Modal>
     </div>
   );

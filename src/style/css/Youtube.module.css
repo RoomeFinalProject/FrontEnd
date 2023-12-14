@@ -42,6 +42,18 @@
   padding: 10px;
 }
 
+.resultInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.resultYoutuber {
+  display: flex;
+  text-align: right;
+}
+
 .selectBox {
   display: flex;
   flex-direction: column;
@@ -51,6 +63,7 @@
   height: auto;
   margin: 15px;
   border-radius: 24px;
+  margin-bottom: 85px;
 }
 
 .selectA1 {
@@ -87,6 +100,10 @@
   font-size: 12px;
   font-weight: "Roboto-Light";
   border: none;
+}
+
+.youtubeCardBtnCenter {
+  text-align: center;
 }
 
 .CardRow1 {

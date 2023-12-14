@@ -9,9 +9,16 @@
 .selectDate {
   font-size: 16px;
   color: #757575;
-  width: 100px;
-  height: 20px;
+  width: 110px;
+  height: 30px;
   margin-bottom: 20px;
+}
+
+.researchCompany {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
 
 .researchTitle {
@@ -20,7 +27,7 @@
   width: 288px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 10px;
 }
 
@@ -44,6 +51,12 @@
   margin-left: -5px;
 }
 
+.reserachBtns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
 .originalText {
   width: 75px;
   height: 32px;
@@ -51,4 +64,33 @@
   color: white;
   font-size: 12px;
   font-family: "Roboto-Light";
+  border: 0px;
+}
+
+.originalText2 {
+  width: 75px;
+  height: 32px;
+  background-color: #f341f3;
+  color: white;
+  font-size: 12px;
+  font-family: "Roboto-Light";
+  border: 0px;
+}
+
+.researchModalCompany {
+  text-align: end;
+}
+
+.researchModalBtn {
+  width: 72px;
+  height: 38px;
+  border-radius: 16px;
+  background-color: rgba(241, 0, 134, 0.1);
+  font-size: 12px;
+  font-weight: "Roboto-Light";
+  border: none;
+}
+
+.researchModalBtnCenter {
+  text-align: center;
 }

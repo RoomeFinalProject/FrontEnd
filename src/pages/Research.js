@@ -4,13 +4,27 @@ import styles from "../style/css/Research.module.css";
 import grayLine from "../image/LineGray.png";
 import company1 from "../image/company1.png";
 import axios from "axios";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 function Research() {
   const [researchData, setResearchData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedResearch, setSelectedResearch] = useState(null);
+  const [selectedDate, setSelectedDate] = useState();
+  const [options2, setOptions] = useState([]);
 
-  //  오늘자 날짜 생성 =======================================================================
+  const openModal = (data) => {
+    setSelectedResearch(data);
+  };
+
+  const closeModal = () => {
+    setSelectedResearch(null);
+  };
+
+  //  오늘자 날짜 생성 및 날짜처리 ===================================================================
   const today = new Date();
 
   today.setDate(today.getDate());
@@ -23,6 +37,24 @@ function Research() {
   };
 
   const formattedDate = today.toLocaleDateString("ko-KR", options);
+
+  useEffect(() => {
+    // Calculate dates for the previous 5 days
+    const today = new Date();
+    const previousDates = Array.from({ length: 5 }, (_, index) => {
+      const date = new Date(today);
+      date.setDate(today.getDate() - index);
+      return date.toISOString().split("T")[0]; // Get YYYY-MM-DD format
+    });
+
+    // Set options with the calculated dates
+    setOptions(previousDates);
+  }, []);
+
+  const handleChange = (event) => {
+    setSelectedDate(event.target.value);
+    // You can perform any additional actions here based on the selected date
+  };
 
   // 백엔드에서 불러오기 =======================================================================
 
@@ -57,20 +89,32 @@ function Research() {
         {researchData.map((data, index) => (
           <div key={index} className="summaryContainer">
             <div className="box-researcher">
-              <div style={{ marginLeft: "-10px" }}>
-                <img src={company1} className={styles.companyName}></img>
-                {/* <div className={styles.companyName2}>{data.company}</div> */}
+              <div className={styles.researchCompany}>
+                <div style={{ marginLeft: "-10px" }}>
+                  <img src={company1} className={styles.companyName}></img>
+                  {/* <div className={styles.companyName2}>{data.company}</div> */}
+                </div>
               </div>
             </div>
             <div key={index}>
               <div className={styles.researchTitle}>
                 <div>{data.title}</div>
+              </div>
+              <div className={styles.reserachBtns}>
                 <div>
-                  <button className={styles.originalText}>원문 보기</button>
+                  <button
+                    className={styles.originalText}
+                    onClick={() => openModal(data)}
+                  >
+                    요약 보기
+                  </button>
+                </div>
+                <div>
+                  <button className={styles.originalText2}>원문 보기</button>
                 </div>
               </div>
-
-              <div className={styles.researchContext}>{data.content}</div>
+              {/* 
+              <div className={styles.researchContext}>{data.content}</div> */}
               <img src={grayLine}></img>
             </div>
           </div>
@@ -81,11 +125,71 @@ function Research() {
 
   return (
     <div className={styles.researchContainer}>
-      <div className={styles.selectDate}>{formattedDate}</div>
+      {/* <div className={styles.selectDate}>{formattedDate}</div> */}
+      <select
+        className={styles.selectDate}
+        value={selectedDate}
+        onChange={handleChange}
+      >
+        {options2.map((date, index) => (
+          <option key={index} value={date}>
+            {new Date(date).toLocaleDateString("ko-KR", {
+              weekday: "short",
+              month: "2-digit",
+              day: "2-digit",
+            })}
+          </option>
+        ))}
+      </select>
 
       <div>
         <ResearchComponent researchData={researchData} />
       </div>
+
+      {/* Modal */}
+      <Modal
+        isOpen={!!selectedResearch}
+        onRequestClose={closeModal}
+        contentLabel="Research Details"
+      >
+        {selectedResearch && (
+          <div className={styles.researchModal}>
+            <div
+              style={{
+                fontFamily: "KaKaoBold",
+                textAlign: "center",
+                fontSize: "24px",
+              }}
+            >
+              {selectedResearch.title}
+            </div>
+            {/* <div>{selectedResearch.channel_name}</div> */}
+            <div className={styles.researchModalCompany}>유안타증권</div>
+            <div style={{ fontFamily: "KaKaoBold" }}>리서치요약</div>
+            <div
+              style={{
+                fontFamily: "Roboto-Light",
+                fontSize: "14px",
+                marginBottom: "20px",
+                whiteSpace: "pre-line",
+              }}
+            >
+              <div className={styles.researchContext}>
+                {selectedResearch.content}
+              </div>
+            </div>
+          </div>
+        )}
+        <div className={styles.researchModalBtnCenter}>
+          <button
+            onClick={closeModal}
+            className={styles.researchModalBtn}
+            style={{ textAlign: "center" }}
+          >
+            창 닫기
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 }
