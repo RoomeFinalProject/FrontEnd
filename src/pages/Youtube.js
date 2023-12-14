@@ -22,26 +22,45 @@ function Youtube() {
   const [videos, setVideos] = useState([]);
   const [firstVideo, setFirstVideo] = useState(null); // Add state for the first video
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [linkedVideo, setLinkedVideo] = useState(null);
+  const [link, setLink] = useState("");
+  const [summary, setSummary] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   // 페이지를 열자마자 자료를 불러옴 ============================================
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/")
+      .get("http://127.0.0.1:8000/youtube")
       .then((result) => {
         console.log(result);
-        const fetchedVideos = result.data;
-        // setVideos(fetchedVideos);
-        const firstVideo = fetchedVideos[0][0];
+        setVideos(result.data);
+        const firstVideo = result.data[0][0];
         setFirstVideo(firstVideo);
-        // const firstVideo = result.data[0][0];
-        console.log(firstVideo.channel_name);
       })
       .catch(() => {
         console.log("Failed");
       });
   }, []);
 
-  const openModal = () => {
+  const getSummary = () => {
+    console.log("Link to be sent in the get request:", link);
+    axios
+      .get("http://127.0.0.1:8000/linkedVideo", { params: { link } })
+      .then((response) => {
+        setSummary(response.data.summary);
+      })
+      .catch((err) => {
+        setError("Failed to fetch summary");
+        console.error("Error:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  const openModal = (selectedVideo) => {
+    setFirstVideo(selectedVideo);
     setIsModalOpen(true);
   };
 
@@ -56,26 +75,31 @@ function Youtube() {
           <input
             type="text"
             placeholder="   링크를 입력해주세요"
+            value={link}
+            onChange={(e) => setLink(e.target.value)} // Update the state on input change
             style={{ marginRight: "10px", width: "66vw" }}
             className={styles.inputBox}
           />
-          <button className={styles.searchBtn}>요약하기</button>
+          <button className={styles.searchBtn} onClick={getSummary}>
+            요약하기
+          </button>
         </div>
       </div>
       <div>
         <div className={styles.resultSection}>
           <div className="left-section">
             <div className="youtube-info">
-              <div>YouTuber</div>
               <p>Subscribers: 100k</p>
             </div>
           </div>
           <div className="right-section">
             <div>YouTube Title</div>
-            <p>
-              YouTube Summary YouTube Summary YouTube Summary YouTube Summary
-              YouTube Summary YouTube Summary YouTube Summary YouTube Summary{" "}
-            </p>
+            {summary && (
+              <div>
+                <h3>Summary:</h3>
+                <p>{summary}</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -83,22 +107,10 @@ function Youtube() {
       {/* 카드부분 */}
       <div className={styles.selectBox}>
         <div className={styles.selectA1}> 최신 투자 정보 요약 보기</div>
-        <div className={styles.youtubeCardBox}></div>
-
-        <div className={styles.youtubeCard}>
-          {firstVideo && (
-            <div className={styles.youtubeCardBox} onClick={openModal}>
-              <div className={styles.CardRow1}>{firstVideo.channel_name}</div>
-              <div className={styles.CardRow2}>
-                영상제목: {firstVideo.video_title}
-              </div>
-              <div className={styles.CardRow3}>
-                <button onClick={openModal} className={styles.youtubeCardBtn}>
-                  관심없음
-                </button>
-              </div>
-            </div>
-          )}
+        <div className={styles.youtubeCardBox}>
+          {videos.map((channelVideos, index) => (
+            <Card key={index} video={channelVideos[0]} openModal={openModal} />
+          ))}
         </div>
       </div>
 
@@ -125,15 +137,15 @@ function Youtube() {
             >
               {firstVideo.summary}
             </div>
-            <button
-              onClick={closeModal}
-              className={styles.youtubeCardBtn}
-              style={{ alignSelf: "center" }}
-            >
-              창 닫기
-            </button>
           </div>
         )}
+        <button
+          onClick={closeModal}
+          className={styles.youtubeCardBtn}
+          style={{ alignSelf: "center" }}
+        >
+          창 닫기
+        </button>
       </Modal>
     </div>
   );

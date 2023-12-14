@@ -1,14 +1,21 @@
-function Card(props) {
+import React from "react";
+import styles from "../style/css/Youtube.module.css";
+
+function Card({ video, openModal }) {
   return (
-    <div className="selectYoutuber" style={{ marginBottom: "10px" }}>
-      <div className="youtuberBox">
-        <div style={{ width: "70%" }}>{props.videos}</div>
-        <div className="buttons" style={{ width: "30%" }}>
-          <button className="addButton">요약</button>
-          <button className="deleteButton">삭제</button>
+    <div>
+      <div className={styles.youtubeCard} onClick={() => openModal(video)}>
+        <div className={styles.CardRow1}>{video.channel_name}</div>
+        <div className={styles.CardRow2}>{video.video_title}</div>
+        <div className={styles.CardRow3}>
+          <button
+            onClick={() => openModal(video)}
+            className={styles.youtubeCardBtn}
+          >
+            관심 없음
+          </button>
         </div>
       </div>
-      <div style={{ margin: "10px", fontSize: "16px" }}> {props.videos}</div>
     </div>
   );
 }

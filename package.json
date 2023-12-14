@@ -15,7 +15,7 @@
     "react-kakao-login": "^2.1.1",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.19.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.6.0",
     "workbox-broadcast-update": "^6.6.0",

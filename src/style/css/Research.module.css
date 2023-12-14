@@ -20,6 +20,8 @@
   width: 288px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .researchContext {
@@ -28,8 +30,18 @@
 }
 
 .companyName {
-  width: 48px;
-  height: 48px;
+  width: 70px;
+  height: 70px;
+  margin-left: -5px;
+}
+
+.companyName2 {
+  font-size: 14px;
+  width: 55px;
+  height: 55px;
+  font-family: "Roboto-Light";
+  text-align: center;
+  margin-left: -5px;
 }
 
 .originalText {
