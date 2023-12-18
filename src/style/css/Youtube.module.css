@@ -44,7 +44,7 @@
 
 .resultInfo {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 10px;
 }
@@ -52,6 +52,12 @@
 .resultYoutuber {
   display: flex;
   text-align: right;
+  justify-content: right;
+}
+
+.vid_title {
+  font-size: 26px;
+  font-family: "KaKaoBold";
 }
 
 .selectBox {
@@ -112,6 +118,10 @@
   padding: 10px;
   align-items: center;
   text-align: center;
+  display: flex;
+  align-items: center;
+  font-family: "KakaoBold";
+  justify-content: center;
 }
 
 .CardRow2 {
@@ -119,6 +129,7 @@
   max-width: 250px;
   height: auto;
   padding: 10px;
+  font-family: "Roboto-Medium";
 }
 
 .CardRow3 {
@@ -128,10 +139,20 @@
   padding: 7px;
   align-items: center;
   justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .youtubeModal {
   display: flex;
   flex-direction: column;
   align-content: center;
+}
+
+.thumbnail {
+  width: 220px;
+}
+
+.video_title {
+  font-size: 12px;
 }

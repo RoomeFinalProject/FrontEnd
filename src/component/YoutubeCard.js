@@ -16,7 +16,12 @@ function Card({ video, openModal, onNotInterested }) {
             {video.channel_name}
           </div>
           <div className={styles.CardRow2} onClick={() => openModal(video)}>
-            {video.video_title}
+            <img
+              src={video.thumbnail}
+              className={styles.thumbnail}
+              alt="Thumbnail"
+            />
+            {/* <div className={styles.video_title}>{video.video_title}</div> */}
           </div>
           <div className={styles.CardRow3}>
             <button

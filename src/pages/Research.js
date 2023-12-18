@@ -62,8 +62,10 @@ function Research() {
     const fetchResearchData = async () => {
       try {
         const response = await axios.get("http://127.0.0.1:8000/research");
+
         setResearchData(response.data);
-        console.log("response: ", response.data);
+        console.log("response: ", response.data.body);
+        console.log("response: ", typeof response.data);
       } catch (error) {
         console.error("Error fetching research data:", error);
         setError("Failed to fetch research data");
@@ -91,12 +93,16 @@ function Research() {
             <div className="box-researcher">
               <div className={styles.researchCompany}>
                 <div style={{ marginLeft: "-10px" }}>
-                  <img src={company1} className={styles.companyName}></img>
-                  {/* <div className={styles.companyName2}>{data.company}</div> */}
+                  <img
+                    src={company1}
+                    className={styles.companyName}
+                    alt="Company Logo"
+                  ></img>
+                  <div className={styles.companyName2}>{data.Date}</div>
                 </div>
               </div>
             </div>
-            <div key={index}>
+            <div key={index} style={{ marginLeft: "20px" }}>
               <div className={styles.researchTitle}>
                 <div>{data.title}</div>
               </div>
@@ -110,7 +116,16 @@ function Research() {
                   </button>
                 </div>
                 <div>
-                  <button className={styles.originalText2}>원문 보기</button>
+                  <button className={styles.originalText2}>
+                    <a
+                      href={data.Link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "None", color: "white" }}
+                    >
+                      원문 보기
+                    </a>
+                  </button>
                 </div>
               </div>
               {/* 
