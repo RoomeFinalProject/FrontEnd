@@ -54,7 +54,7 @@ function Research() {
   useEffect(() => {
     // Calculate dates for the previous 5 days
     const today = new Date();
-    const previousDates = Array.from({ length: 15 }, (_, index) => {
+    const previousDates = Array.from({ length: 8 }, (_, index) => {
       const date = new Date(today);
       date.setDate(today.getDate() - index);
       return date.toISOString().split("T")[0]; // Get YYYY-MM-DD format
@@ -127,7 +127,6 @@ function Research() {
                     className={styles.companyName}
                     alt="Company Logo"
                   ></img>
-                  <div className={styles.companyName2}>{data.Date}</div>
                 </div>
               </div>
             </div>
