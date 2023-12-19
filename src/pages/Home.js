@@ -56,10 +56,7 @@ function Home() {
         </Link>
       </div>
       <div className="CardContainer">
-        <Link
-          to="http://pf.kakao.com/_xbxjgxjG/chat"
-          className="card no-underline"
-        >
+        <Link to="http://pf.kakao.com/_xbxjgxjG" className="card no-underline">
           <div className={styles.innerWhiteCard}>
             <img src={chatbotImage} className={styles.cardImage2}></img>
           </div>

@@ -26,9 +26,7 @@ function NavBottomBar() {
       <Link
         to="/help"
         className="nav-icon"
-        onClick={() =>
-          (window.location.href = "http://pf.kakao.com/_xbxjgxjG/chat")
-        }
+        onClick={() => (window.location.href = "http://pf.kakao.com/_xbxjgxjG")}
       >
         <img src={navkakaotalk} className="nav-icon"></img>
         <div className="nav-name">AI상담 챗봇</div>
