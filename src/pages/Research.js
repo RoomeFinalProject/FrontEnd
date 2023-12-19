@@ -5,6 +5,7 @@ import grayLine from "../image/LineGray.png";
 import company1 from "../image/company1.png";
 import axios from "axios";
 import Modal from "react-modal";
+import ScrollDownComponent from "../component/ScrollDown";
 
 Modal.setAppElement("#root");
 
@@ -15,6 +16,7 @@ function Research() {
   const [selectedResearch, setSelectedResearch] = useState(null);
   const [selectedDate, setSelectedDate] = useState();
   const [options2, setOptions] = useState([]);
+  const [filteredResearchData, setFilteredResearchData] = useState([]);
 
   const openModal = (data) => {
     setSelectedResearch(data);
@@ -38,10 +40,16 @@ function Research() {
 
   const formattedDate = today.toLocaleDateString("ko-KR", options);
 
+  // Filter out Saturdays (6) and Sundays (0)
+  const filteredOptions = options2.filter((date) => {
+    const dayOfWeek = new Date(date).getDay();
+    return dayOfWeek !== 0 && dayOfWeek !== 6;
+  });
+
   useEffect(() => {
     // Calculate dates for the previous 5 days
     const today = new Date();
-    const previousDates = Array.from({ length: 5 }, (_, index) => {
+    const previousDates = Array.from({ length: 15 }, (_, index) => {
       const date = new Date(today);
       date.setDate(today.getDate() - index);
       return date.toISOString().split("T")[0]; // Get YYYY-MM-DD format
@@ -77,14 +85,28 @@ function Research() {
     fetchResearchData();
   }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>; // You can replace this with a loading spinner
-  // }
+  // 해당 날짜에 맞춰서 가져올 데이터 정하기 ===================================================================
 
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
+  useEffect(() => {
+    // Filter research data based on the selected date
+    const filteredData = researchData.filter(
+      (data) => data.Date === selectedDate
+    );
+    setFilteredResearchData(filteredData);
+  }, [selectedDate, researchData]);
 
+  // 제목 전처리 ----------------------------------------------------------------
+  const preprocessTitle = (title) => {
+    // Replace ".pdf" with an empty string
+    let processedTitle = title.replace(/\.pdf/g, "");
+
+    // Replace "_" with a space
+    processedTitle = processedTitle.replace(/_/g, " ");
+
+    return processedTitle;
+  };
+
+  // Researcch 컴포넌트 ----------------------------------------------------------------
   const ResearchComponent = ({ researchData }) => {
     return (
       <>
@@ -104,7 +126,7 @@ function Research() {
             </div>
             <div key={index} style={{ marginLeft: "20px" }}>
               <div className={styles.researchTitle}>
-                <div>{data.title}</div>
+                <div>{preprocessTitle(data.title)}</div>
               </div>
               <div className={styles.reserachBtns}>
                 <div>
@@ -146,7 +168,7 @@ function Research() {
         value={selectedDate}
         onChange={handleChange}
       >
-        {options2.map((date, index) => (
+        {filteredOptions.map((date, index) => (
           <option key={index} value={date}>
             {new Date(date).toLocaleDateString("ko-KR", {
               weekday: "short",
@@ -158,7 +180,8 @@ function Research() {
       </select>
 
       <div>
-        <ResearchComponent researchData={researchData} />
+        {/* Pass the filtered data to ResearchComponent */}
+        <ResearchComponent researchData={filteredResearchData} />
       </div>
 
       {/* Modal */}
@@ -176,7 +199,7 @@ function Research() {
                 fontSize: "24px",
               }}
             >
-              {selectedResearch.title}
+              {preprocessTitle(selectedResearch.title)}
             </div>
             {/* <div>{selectedResearch.channel_name}</div> */}
             <div className={styles.researchModalCompany}>유안타증권</div>
@@ -205,6 +228,7 @@ function Research() {
           </button>
         </div>
       </Modal>
+      <ScrollDownComponent />
     </div>
   );
 }

@@ -34,12 +34,18 @@
 .resultSection {
   width: 90vw;
   height: auto;
+  min-height: 150px;
   background-color: #1e2c46;
   color: white;
   border-radius: 20px;
   font-size: 16px;
   font-family: "Roboto-Bold";
   padding: 10px;
+}
+
+.loading {
+  font-size: 30px;
+  text-align: center;
 }
 
 .resultInfo {

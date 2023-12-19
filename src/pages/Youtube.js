@@ -23,14 +23,12 @@ function Youtube() {
   const [videos, setVideos] = useState([]);
   const [firstVideo, setFirstVideo] = useState(null); // Add state for the first video
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [linkedVideo, setLinkedVideo] = useState(null);
   const [link, setLink] = useState("");
   const [summary, setSummary] = useState("");
   const [author, setAuthor] = useState("");
   const [vid_title, setVidTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [videoData, setVideoData] = useState(null);
 
   // 페이지를 열자마자 자료를 불러옴 ============================================
   useEffect(() => {
@@ -50,6 +48,7 @@ function Youtube() {
   // linked Video ============================================
 
   const getSummary = () => {
+    setLoading(true);
     console.log("Link to be sent in the get request:", link);
     axios
       .get("http://127.0.0.1:8000/linkedVideo", { params: { link } })
@@ -67,45 +66,6 @@ function Youtube() {
         setLoading(false);
       });
   };
-
-  // useEffect(() => {
-  //   // Define a function to fetch data using Axios
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("http://127.0.0.1:8000/linkedVideo"); // Replace with your actual API endpoint
-  //       setVideoData(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   // Call the fetch data function
-  //   fetchData();
-  // }, []);
-
-  // const getSummary = () => {
-  //   console.log("Link to be sent in the get request:", link);
-  //   axios
-  //     .get("http://127.0.0.1:8000/linkedVideo", { params: { link } })
-  //     .then(({ data }) => {
-  //       const { youtube } = data;
-  //       if (youtube) {
-  //         const { author, vid_title, summary } = youtube;
-  //         setAuthor(author);
-  //         setVideoTitle(vid_title);
-  //         setSummary(summary);
-  //         console.log(data);
-  //       }
-  //       console.log(data);
-  //     })
-  //     .catch((err) => {
-  //       setError("Failed to fetch summary");
-  //       console.error("Error:", err);
-  //     })
-  //     .finally(() => {
-  //       setLoading(false);
-  //     });
-  // };
 
   const openModal = (selectedVideo) => {
     setFirstVideo(selectedVideo);
@@ -143,20 +103,25 @@ function Youtube() {
       </div>
       <div>
         <div className={styles.resultSection}>
-          <div>
-            <div className={styles.resultInfo}>
-              <div className={styles.vid_title}>
-                {vid_title && <p> {vid_title}</p>}
+          {loading && <div className={styles.loading}>Loading...</div>}
+          {!loading && (
+            <>
+              <div>
+                <div className={styles.resultInfo}>
+                  <div className={styles.vid_title}>
+                    {vid_title && <p> {vid_title}</p>}
+                  </div>
+                  <div className={styles.resultYoutuber}>
+                    {author && <div className={styles.author}>{author}</div>}
+                  </div>
+                </div>
               </div>
-              <div className={styles.resultYoutuber}>
-                {author && <div className={styles.author}>{author}</div>}
-              </div>
-            </div>
-          </div>
-          {summary && (
-            <div>
-              <div style={{ whiteSpace: "pre-line" }}>{summary}</div>
-            </div>
+              {summary && (
+                <div>
+                  <div style={{ whiteSpace: "pre-line" }}>{summary}</div>
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>
