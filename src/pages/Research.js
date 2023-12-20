@@ -10,11 +10,16 @@ import ScrollDownComponent from "../component/ScrollDown";
 Modal.setAppElement("#root");
 
 function Research() {
+  const getFormattedToday = () => {
+    const today = new Date();
+    return today.toISOString().split("T")[0];
+  };
+
   const [researchData, setResearchData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedResearch, setSelectedResearch] = useState(null);
-  const [selectedDate, setSelectedDate] = useState();
+  const [selectedDate, setSelectedDate] = useState(getFormattedToday());
   const [options2, setOptions] = useState([]);
   const [filteredResearchData, setFilteredResearchData] = useState([]);
 
@@ -49,7 +54,7 @@ function Research() {
   useEffect(() => {
     // Calculate dates for the previous 5 days
     const today = new Date();
-    const previousDates = Array.from({ length: 15 }, (_, index) => {
+    const previousDates = Array.from({ length: 8 }, (_, index) => {
       const date = new Date(today);
       date.setDate(today.getDate() - index);
       return date.toISOString().split("T")[0]; // Get YYYY-MM-DD format
@@ -69,7 +74,9 @@ function Research() {
   useEffect(() => {
     const fetchResearchData = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/research");
+        const response = await axios.get("http://127.0.0.1:8000/research", {
+          params: { date: selectedDate },
+        });
 
         setResearchData(response.data);
         console.log("response: ", response.data.body);
@@ -83,7 +90,7 @@ function Research() {
     };
 
     fetchResearchData();
-  }, []);
+  }, [selectedDate]);
 
   // 해당 날짜에 맞춰서 가져올 데이터 정하기 ===================================================================
 
@@ -120,7 +127,6 @@ function Research() {
                     className={styles.companyName}
                     alt="Company Logo"
                   ></img>
-                  <div className={styles.companyName2}>{data.Date}</div>
                 </div>
               </div>
             </div>
@@ -180,7 +186,6 @@ function Research() {
       </select>
 
       <div>
-        {/* Pass the filtered data to ResearchComponent */}
         <ResearchComponent researchData={filteredResearchData} />
       </div>
 
